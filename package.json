@@ -1,0 +1,15 @@
+{
+  "name": "inframon-processor",
+  "version": "1.0.0",
+  "description": "Processes monitors maintained by the inframon client application",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha test/*/*.js"
+  },
+  "author": "Matt Utley",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.0.2",
+    "sinon": "^2.3.2"
+  }
+}
