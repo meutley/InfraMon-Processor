@@ -4,11 +4,15 @@ const request = require('request');
 // Models
 const webRequestMethods = require('../../models/web-request-methods');
 
-const _performGet = function (url, callback) {
+const _performGet = function (url, success, error) {
     request
         .get(url)
         .on('response', (response) => {
-            callback(response);
+            success(response);
+        }).on('error', (errResponse) => {
+            if (error && typeof error === 'function') {
+                error(errResponse);
+            }
         });
 }
 
@@ -22,7 +26,13 @@ const _perform = function (webRequestDetails, complete, error) {
 
     if (methodAction && typeof methodAction === 'function') {
         methodAction(webRequestDetails.url, (response) => {
-            console.log(response.statusCode);
+            if (complete && typeof complete === 'function') {
+                complete(response.statusCode);
+            }
+        }, (errResponse) => {
+            if (error && typeof error === 'function') {
+                error(errResponse);
+            }
         });
     }
 }
