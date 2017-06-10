@@ -9,6 +9,9 @@ const pingRequestService = monitorActionServices.ping;
 // Models
 const monitorTypes = require('../../models/monitor-types');
 
+// Repositories
+const monitorStatsRepository = require('../../data-access/repository/monitor-stats-repository');
+
 var MonitorProcessorService = function (monitor) {
     this._monitor = monitor;
     this._monitorInterval = null;
@@ -46,7 +49,18 @@ MonitorProcessorService.prototype.monitorInterval = function () {
 }
 
 MonitorProcessorService.prototype.doWebRequest = function () {
-    webRequestService.perform(this._monitor.webRequestDetails, null, null);
+    webRequestService.perform(
+        this._monitor.webRequestDetails, (statusCode) => {
+            monitorStatsRepository.addWebRequestResult(
+                this._monitor._id,
+                {
+                    requestDateTime: new Date(),
+                    statusCode: statusCode
+                },
+                null, null);
+        }, (error) => {
+
+        });
 }
 
 MonitorProcessorService.prototype.doPing = function () {

@@ -2,6 +2,22 @@ const ObjectID = require('mongodb').ObjectID;
 
 const _get = function (db, collectionName) {
     return {
+        insertOne: function (model, success, failure) {
+            try {
+                db.collection(collectionName)
+                    .insertOne(model)
+                    .then((result) => {
+                        if (typeof success === 'function') {
+                            success(model);
+                        }
+                    });
+            } catch (ex) {
+                if (typeof failure === 'function') {
+                    failure(ex);
+                }
+            }
+        },
+        
         getById: function (id, success, failure) {
             try {
                 db.collection(collectionName)

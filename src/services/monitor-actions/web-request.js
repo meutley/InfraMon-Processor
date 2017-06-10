@@ -16,7 +16,7 @@ const _performGet = function (url, success, error) {
         });
 }
 
-const _perform = function (webRequestDetails, complete, error) {
+const _perform = function (webRequestDetails, success, error) {
     var methodAction = null;
     switch (webRequestDetails.method) {
         case webRequestMethods.GET:
@@ -26,8 +26,8 @@ const _perform = function (webRequestDetails, complete, error) {
 
     if (methodAction && typeof methodAction === 'function') {
         methodAction(webRequestDetails.url, (response) => {
-            if (complete && typeof complete === 'function') {
-                complete(response.statusCode);
+            if (success && typeof success === 'function') {
+                success(response.statusCode);
             }
         }, (errResponse) => {
             if (error && typeof error === 'function') {
