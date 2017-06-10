@@ -40,7 +40,7 @@ ProcessorService.prototype.start = function (onMonitorsLoaded) {
     dataLoadService.monitor.getAll((data) => {
         const count = data.length;
         var currentIndex = 0;
-
+        
         if (count > 0) {
             // Fetch each monitor from the collection
             collectionUtility.forEachWithCallback(data, (entity) => {

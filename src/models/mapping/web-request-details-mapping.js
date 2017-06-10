@@ -6,7 +6,7 @@ module.exports = {
         model.url = entity.url;
         model.method = entity.method;
         model.expectedResponseStatusCode = entity.expectedResponseStatusCode;
-
+        
         return model;
     }
 }

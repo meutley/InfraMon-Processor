@@ -1,3 +1,3 @@
 module.exports = {
-    begin: _begin
+    GET: 'GET'
 }

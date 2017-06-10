@@ -11,19 +11,19 @@ module.exports = {
         model.type = entity.type;
         
         model.webRequestDetails =
-            model.webRequestDetails
-            ? webRequestMapping.fromEntity(model.webRequestDetails)
+            entity.webRequestDetails
+            ? webRequestDetailsMapping.fromEntity(entity.webRequestDetails)
             : null;
 
         model.pingDetails =
             entity.pingDetails
-            ? pingDetailsMapping.fromEntity(model.pingDetails)
+            ? pingDetailsMapping.fromEntity(entity.pingDetails)
             : null;
 
         model.frequencyAmount = entity.frequencyAmount;
         model.frequencyPeriod = entity.frequencyPeriod;
         model.isActive = entity.isActive;
-
+        
         return model;
     }
 }

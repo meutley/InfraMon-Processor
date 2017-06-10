@@ -46,7 +46,7 @@ MonitorProcessorService.prototype.monitorInterval = function () {
 }
 
 MonitorProcessorService.prototype.doWebRequest = function () {
-    // TODO: Perform web request and persist results in database
+    webRequestService.perform(this._monitor.webRequestDetails, null, null);
 }
 
 MonitorProcessorService.prototype.doPing = function () {
