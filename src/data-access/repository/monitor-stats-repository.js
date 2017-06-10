@@ -20,7 +20,6 @@ const _addWebRequestResult = function (monitorId, result, success, failure) {
         dataUtility.doWithConnection((db) => {
             dataProvider.get(db, 'webrequestresults')
                 .insertOne(model, (data) => {
-                    console.log(data);
                     _callbackWithData(success, data);
                 }, (err) => {
                     _callbackWithData(failure, err);
