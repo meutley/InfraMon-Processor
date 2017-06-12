@@ -7,7 +7,7 @@ const _callbackWithData = function (action, data) {
     }
 }
 
-const _getAll = function (success, failure) {
+const _getAll = function (success, failure, filter) {
     try {
         dataUtility.doWithConnection((db) => {
             dataProvider.get(db, 'monitors')
@@ -15,7 +15,7 @@ const _getAll = function (success, failure) {
                     _callbackWithData(success, data);
                 }, (err) => {
                     _callbackWithData(failure, err);
-                });
+                }, filter);
 
             db.close();
         });

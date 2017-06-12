@@ -35,10 +35,10 @@ const _get = function (db, collectionName) {
             }
         },
 
-        getAll: function (success, failure) {
+        getAll: function (success, failure, filter) {
             try {
                 db.collection(collectionName)
-                    .find({}).toArray((err, res) => {
+                    .find(filter).toArray((err, res) => {
                         if (err && typeof failure === 'function') {
                             failure(err);
                         } else if (!err) {

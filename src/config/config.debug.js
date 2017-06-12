@@ -14,6 +14,9 @@ var config = baseConfig;
 
 config.database.server = 'mongodb://localhost';
 
+config.processorService.startupRefreshInterval = 1000;
+config.processorService.checkActiveMonitorsInterval = 5000;
+
 
 // DO NOT MODIFY
 module.exports = config;

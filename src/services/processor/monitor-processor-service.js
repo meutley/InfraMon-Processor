@@ -15,6 +15,11 @@ const monitorStatsRepository = require('../../data-access/repository/monitor-sta
 var MonitorProcessorService = function (monitor) {
     this._monitor = monitor;
     this._monitorInterval = null;
+    this.isRunning = false;
+
+    this.getMonitorId = function () {
+        return this._monitor._id;
+    }
 }
 
 MonitorProcessorService.prototype.start = function () {
@@ -28,6 +33,8 @@ MonitorProcessorService.prototype.start = function () {
         this._monitorInterval = setInterval(() => {
             this.monitorInterval();
         }, this._monitorInterval);
+
+        this.isRunning = true;
     }
 }
 
@@ -35,15 +42,17 @@ MonitorProcessorService.prototype.stop = function () {
     if (this._monitorInterval) {
         clearInterval(this._monitorInterval);
     }
+    
+    this.isRunning = false;
 }
 
 MonitorProcessorService.prototype.monitorInterval = function () {
     switch (this._monitor.type) {
         case monitorTypes.webRequest:
-            this.doWebRequest();
+            // this.doWebRequest();
             break;
         case monitorTypes.ping:
-            this.doPing();
+            // this.doPing();
             break;
     }
 }
